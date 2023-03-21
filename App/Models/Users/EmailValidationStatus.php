@@ -1,5 +1,5 @@
 <?php
-namespace App\Users;
+namespace App\Models\Users;
 
 class EmailValidationStatus implements IEmailValidationStatus{
 

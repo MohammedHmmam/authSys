@@ -1,5 +1,5 @@
 <?php
-namespace App\Users;
+namespace App\Models\Users;
 
 use DateTime;
 
@@ -8,7 +8,7 @@ class User implements IUser{
     private int                 $_userId; //user Id generated automatically in database
     private string              $_loginName; // username, email, phone number that used for login
     private string              $_passwordHash; //password after hashed
-    private string              $_passwordSalt; //auto generated Salt When set password
+    private string              $_passwordSalt; //Deprecated!! -- Not used--
     private int                 $_hashAlgorithmId;//
     private string              $_emailAddress;
     private string              $_confirmationToken;

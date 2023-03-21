@@ -1,5 +1,5 @@
 <?php
-    namespace App\Users;
+    namespace App\Models\Users;
 
     class HashingAlgorithms implements IHashingAlgorithms {
         private int         $_AlgorithmId;
