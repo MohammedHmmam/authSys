@@ -18,7 +18,7 @@ interface IDbHandler{
     public function select($table , $where = []);
 
     //Update Data
-    public function Update($table, $data = []);
+    public function Update($table, $data = [] , $where = []);
 
     //Delete Data
     public function delete($table, $where = []);

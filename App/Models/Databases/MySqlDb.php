@@ -202,49 +202,77 @@ class MySqlDb implements IDbHandler{
     }
 
     //Update Data in Mysql Database
-    public function Update($table, $data = [])
+    public function Update($table, $data = [] , $where = [])
     {
-  
-/*
-        $update = "UPDATE  pigeons SET breederName = ?, pigeonName = ? ,ringSymbol = ?,
-                    ringYear=?, ringNumber=?, color=?, gender =?, birthDate =?,
-                    aboutPigeon=?, fatherId=?, motherId=?, pigeonStatus=?, pigeonImage=? WHERE pigeonId = ?";
+         //check parameters
+        if(!empty($table) && !empty($data) && !empty($where)){
 
+            //Create Columnd, Values Containers
+            $dataKeys       = [];
+            $dataValues     = [];
 
+            $whereKeys      = [];
+            $whereValues    = [];
 
-        $mySql = new MySqlDb();
-        $this->_pdo = $mySql->connect();
-        $this->_stmt = $this->_pdo->prepare($update);
+            $sql = '';
 
-        if($this->_stmt->execute([
-            $data['breederName'],
-            $data['pigeonName'],
-            $data['ringSymbol'],
-            $data['ringYear'],
-            $data['ringNumber'],
-            $data['color'],
-            $data['gender'],
-            $data['birthDate'],
-            $data['aboutPigeon'],
-            $data['fatherId'],
-            $data['motherId'],
-            $data['pigeonStatus'],
-            $data['pigeonImage'],
-            $data['pigeonId']
+            $valuesToExecute = [];
 
+            //Fill data keys,(Columns Name Which will Update)  into containers
+            foreach($data as $key=>$value){
+                array_push($dataKeys, $key);
+                array_push($dataValues, $value);
+            }
+            $sql = "UPDATE " . $table . " SET ";
+
+            $columns = "";
+            $and = "";
+
+            for($x=0; $x<count($dataKeys); $x++){
+                $and = ($x < count($dataKeys) -1)? ', ':' WHERE ';
+                $columns .= $dataKeys[$x] . '=? ' . $and; 
+            }
+            //Clear $and Variable
+            unset($and);
+            $sql .= $columns;
+
+            //Get conditions
+            foreach($where as $key=>$value){
+                array_push($whereKeys , $key);
+                array_push($whereValues , $value);
+            }
+            $whereConditions = '';
+            for($y = 0; $y< count($whereKeys); $y++){
+                $and = ($y < count($whereKeys) -1) ? ' AND ': '';
+                $whereConditions .= $whereKeys[$y] . '=? ' . $and;
+            }
+            //clear $and Variable
+            $sql .=$whereConditions;
             
-            
-            ])){
+            //get all values in one array
+            for($i=0; $i < count($dataValues);$i++){
+                array_push($valuesToExecute,$dataValues[$i]);
+            }
 
-                return true;
+            for($n=0; $n < count($whereValues); $n++){
+                array_push($valuesToExecute,$whereValues[$n]);
+            }
 
         }else{
             return false;
         }
 
+        $mysql = new MySqlDb();
+        $this->_pdo = $mysql->connect();
+        $this->_stmt = $this->_pdo->prepare($sql);
 
-*/
+        if($this->_stmt->execute($valuesToExecute)){
+            return true;
+        }else{
+            return false;
+        }
 
+        
     }
 
     //Delete Data from Mysql Database
