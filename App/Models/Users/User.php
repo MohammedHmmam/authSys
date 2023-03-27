@@ -12,10 +12,10 @@ class User implements IUser{
     private int                 $_hashAlgorithmId;//
     private string              $_emailAddress;
     private string              $_confirmationToken;
-    private DateTime            $_tokenGenerationTime;
+    private string              $_tokenGenerationTime;
     private int                 $_emailStatusId; // contain id of email status from emailValidation Status
     private string              $_passwordRecoveryToken;
-    private DateTime            $_recoveryTokenTime;
+    private string              $_recoveryTokenTime;
 
 
     //Setter & Getter
@@ -82,7 +82,7 @@ class User implements IUser{
     }
 
     //set Token Generation Time
-    public function setTokenGenerationTime(Datetime $tokenGenerationTime){
+    public function setTokenGenerationTime(string $tokenGenerationTime){
         $this->_tokenGenerationTime = $tokenGenerationTime;
     }
     //get Token Generation time
@@ -110,7 +110,7 @@ class User implements IUser{
     }
 
     //set recovery Token Time
-    public function setRecoveryTokenTime(DateTime $recoveryTokenTime){
+    public function setRecoveryTokenTime(string $recoveryTokenTime){
         $this->_recoveryTokenTime = $recoveryTokenTime;
     }
     //get recovery Token Time
