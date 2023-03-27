@@ -16,7 +16,7 @@ class UserRepo{
     }
 
 
-
+    
     public  function addUser(IUser $user){
         return $this->_db->insert('user_login_data' ,
             [
@@ -31,6 +31,13 @@ class UserRepo{
             ]
         );
         return false;
+    }
+
+    //Update user login data
+    public function updateUser($data = [] , $where = []){
+        return $this->_db->Update('user_login_data', $data , $where);
+        
+       
     }
 
 }
