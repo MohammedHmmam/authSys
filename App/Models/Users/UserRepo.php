@@ -49,6 +49,11 @@ class UserRepo{
     );
     }
 
+    //Get all Users
+    public function getAllUsers(){
+        return $this->_db->select('user_login_data',[]);
+    }
+
 }
 
 ?>
