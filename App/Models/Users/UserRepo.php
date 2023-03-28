@@ -54,6 +54,13 @@ class UserRepo{
         return $this->_db->select('user_login_data',[]);
     }
 
+    //Get User by login name
+    public function getUserByLoginName(IUser $user){
+        return $this->_db->select('user_login_data',[
+            'loginName'     =>  $user->getLoginName()
+        ]);
+    }
+
 }
 
 ?>
