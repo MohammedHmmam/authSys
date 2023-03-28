@@ -20,6 +20,10 @@ class User implements IUser{
 
     //Setter & Getter
 
+    //Set User Id
+    public function setUserId(int $userId){
+        $this->_userId = $userId;
+    }
     //get user id
     public function getUserId(){
         return $this->_userId;

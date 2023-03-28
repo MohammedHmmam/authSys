@@ -37,7 +37,16 @@ class UserRepo{
     public function updateUser($data = [] , $where = []){
         return $this->_db->Update('user_login_data', $data , $where);
         
-       
+        
+    }
+
+    //Remove user spcific user
+    public function DeleteUser(IUser $user){
+        return $this->_db->delete('user_login_data',
+            [
+                'userId'    => $user->getUserId()
+            ]    
+    );
     }
 
 }
