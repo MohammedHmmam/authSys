@@ -28,7 +28,10 @@ class PrintInputError implements IHtmlPrint{
                  <?php       
                     foreach(ErrorManager::showErrors()[$item] as $key => $value ){
                         ?>
-                            <i class="error-item"><?php echo $value;?></i><br>
+                            
+                            <div class="alert alert-danger" role="alert">
+                                    <?php echo $value;?>
+                            </div>
                         <?php
                     }
                  ?>   
