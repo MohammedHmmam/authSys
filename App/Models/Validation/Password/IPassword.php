@@ -5,7 +5,7 @@ interface IPassword{
 
     //Main function which will check password field
 
-    public static function isValid($field);
+    public static function isValid($field,$field2);
 
     public static function isEmpty($field);
 
