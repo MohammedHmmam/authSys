@@ -3,12 +3,21 @@ require_once '../../vendor/autoload.php';
 require_once '../asset/Templates/header.php';
 
 use App\Models\Alerts\ErrorManager;
+use App\Models\Auth\Auth;
 use App\Models\Print\PrintInputError;
+use App\Models\Sessions\Session;
+
+Session::startSession();
+$auth = new Auth();
+if($auth->isLoggedIn()){
+
+    echo"<pre>";
+    print_r($_SESSION);
+    echo "</pre>";
+    die();
 
 ?>
-<div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
-</div>
+
     <main>
         <form class="row g-3" action="../Controllers/NewUserController.php" method="post">
 
@@ -43,10 +52,15 @@ use App\Models\Print\PrintInputError;
 
          
             <div class="col-12">
-                <input type="submit" name="submit" class="btn btn-primary" value="Sign in">
+                <input type="submit" name="submit" class="btn btn-primary" value="Sign up">
             </div>
         </form>
+
+
     </main>
 <?php
 require_once '../asset/Templates/footer.php';
+}else{
+    header('Location:login.php');
+}
 ?>

@@ -7,9 +7,8 @@ class User implements IUser{
     
     private int                 $_userId; //user Id generated automatically in database
     private string              $_loginName; // username, email, phone number that used for login
+    private string              $_plainPassword = '';
     private string              $_passwordHash; //password after hashed
-    private string              $_passwordSalt; //Deprecated!! -- Not used--
-    private int                 $_hashAlgorithmId;//
     private string              $_emailAddress;
     private string              $_confirmationToken;
     private string              $_tokenGenerationTime;
@@ -17,6 +16,21 @@ class User implements IUser{
     private string              $_passwordRecoveryToken;
     private string              $_recoveryTokenTime;
 
+
+    //Constructor
+    public function __construct()
+                              
+    {
+        //$this->_userId                  = $userId;
+        // $this->_loginName               = $loginName;
+        // $this->_passwordHash            = $passwordHash;
+        // $this->_emailAddress            = $emailAddress;
+        // $this->_confirmationToken       = $confirmToken;
+         $this->_tokenGenerationTime     = date("Y-m-d H:i:s");
+        // $this->_emailStatusId           = $emailStatusId;
+        // $this->_passwordRecoveryToken   = $passwordRecoveryToken;
+        // $this->_recoveryTokenTime       = $recoveryTokenTime;
+    }
 
     //Setter & Getter
 
@@ -38,6 +52,16 @@ class User implements IUser{
         return $this->_loginName;
     }
 
+    //set plain Password
+    public function setPlainPassword($plainPassword){
+        $this->_plainPassword = $plainPassword;
+    }
+
+    //get Plain password
+    public function getPlainPassword(){
+        return $this->_plainPassword;
+    }
+
     //set password hash
     public function setPasswordHash(string $passwordHash){
         $this->_passwordHash = $passwordHash;
@@ -45,25 +69,6 @@ class User implements IUser{
     //get password hash
     public function getPasswordHash(){
         return $this->_passwordHash;
-    }
-
-    //set password Salt
-    public function setPasswordSalt(string $passwordSalt){
-        $this->_passwordSalt = $passwordSalt;
-    }
-    //get password salt
-    public function getPasswordSalt(){
-        return $this->_passwordSalt;
-    }
-
-
-    //Set Hash Alogrithm ID
-    public function setHashAlgorithmId(int $hashAlgorithmId){
-        $this->_hashAlgorithmId = $hashAlgorithmId;
-    }
-    //get Hash Algorithm Id
-    public function getHashAlgorithmId(){
-        return $this->_hashAlgorithmId;
     }
 
 

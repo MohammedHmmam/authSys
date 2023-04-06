@@ -35,7 +35,13 @@ class Email implements IEmail{
     
         //check if Email is Unique
         public static function unique($field){
-            return Validation::isExists('user_login_data' ,['emailAddress'=>$field]);
+            
+            if(!Validation::isExists('user_login_data' ,['emailAddress'=>$field])){
+                return true;
+            }
+            return false;
+
+            
         }
 }
 
